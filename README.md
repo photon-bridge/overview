@@ -36,7 +36,7 @@ To clarify, we are not using Celestia for transaction ordering or other security
 
 To secure strong cryptoeconomic assurances for Data Availability, we utilize Celestia, which offers Data Availability via erasure coding. Users submit their data to the Celestia network as the merkle root within Mina's zkapp, indicating offchain storage, can only be updated if the data is accessible on Celestia.
 
-1. **Users request a signature from Signers that confirm the data is accessible and has been disseminated to the network:**
+2. **Users request a signature from Signers that confirm the data is accessible and has been disseminated to the network:**
 
 In our design, Signers act as a third-party committee, but they could be integrated natively into Celestia with minimal coding. If native support is absent, we can employ Signers as third-party providers, which is exactly what we've done.
 
@@ -44,14 +44,14 @@ Incentives for Signers can be readily established, as Signers possess onchain ad
 
 Since Celestia's block time is shorter than Mina's, users won't encounter additional confirmation delays.
 
-1. **The Signer committee verifies whether the data is accessible and has been distributed across the network. They then sign a message using the Poseidon hash algorithm.**
+3. **The Signer committee verifies whether the data is accessible and has been distributed across the network. They then sign a message using the Poseidon hash algorithm.**
 
 Mina employs the Poseidon hash algorithm, which is snark-friendly, while Celestia utilizes Sha256. This discrepancy, among other reasons, prevents us from verifying Celestia’s state in a trust-minimized manner, hence the need for the Signers.
 
-1. **The Signer committee provides signatures to users:**
+4. **The Signer committee provides signatures to users:**
 
 We initially considered employing Multi-Party Computation (MPC) for this signing mechanism instead of multi-signature, to make it more cost-effective and efficient. However, this proved too complex for a hackathon.
 
 These signatures validate the Data Availability (DA) in a trusted manner, akin to Quantum Gravity Bridge (QGB). If 60% of the signers sign an identical message, the Merkle root at Mina can be updated.
 
-1. **Users send the transaction with signatures.**
+5. **Users send the transaction with signatures.**
