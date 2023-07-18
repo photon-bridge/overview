@@ -29,6 +29,9 @@ To clarify, we are not using Celestia for transaction ordering or other security
 - Attempting to use Celestia's hashes (sha256) in Mina's VM proves troublesome as Mina only supports the poseidon hash algorithm. Proof equivalence is an engineering challenge.
 - Attempting a permissionless approach can allow a malevolent actor to disrupt the system by updating Mina's merkle tree without sending any data to Celestia.
   **Proposed Architecture**
+
+![işşlödsşlfö](https://github.com/photon-bridge/overview/assets/71966179/0ae6cefe-ed88-4c75-b7c4-d108c56089dd)
+
 1. **Users transmit data to Celestia:**
 
 To secure strong cryptoeconomic assurances for Data Availability, we utilize Celestia, which offers Data Availability via erasure coding. Users submit their data to the Celestia network as the merkle root within Mina's zkapp, indicating offchain storage, can only be updated if the data is accessible on Celestia.
